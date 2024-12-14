@@ -16,7 +16,7 @@ const fetchData = async(mergedSlug: string, siteExists: number) => {
 export default async function NotepadPage({ params }: NotepadPageProps) {
   // eslint-disable-next-line @typescript-eslint/await-thenable
   const { slug } = await params;
-  const mergedSlug = slug.join("/");
+  const mergedSlug = slug.map((part) => part.toLowerCase()).join("/");
 
   const siteExists = await redis.exists(mergedSlug);
   const data = await fetchData(mergedSlug, siteExists)
