@@ -1,5 +1,5 @@
 import { saveNotes } from "@/app/actions/save"
-import { hashPassword } from "@/app/utils/vault"
+import { hashPassword, encrypt } from "@/app/utils/vault"
 import { Button } from "@/components/ui/button"
 import LoadingBtn from "@/components/LoadingBtn";
 import {
@@ -46,7 +46,8 @@ export function ChangePassword({ params, values }: ChangePasswordProps) {
 
     try {
       const hash = hashPassword(newPassword) 
-      await saveNotes(params, values, hash)
+      const encryptedNotes = encrypt(values, hash)
+      await saveNotes(params, encryptedNotes)
       
       toast({
         title: "Success!",
@@ -93,12 +94,11 @@ export function ChangePassword({ params, values }: ChangePasswordProps) {
           />
         </div>
         <DialogFooter>
-          <Button variant="outline">Cancel</Button>
           <LoadingBtn 
             disabled={!isFormValid || isSubmitting} 
             onClick={handleSubmit} 
             loading={isSubmitting} // Show spinner when submitting
-            className="w-full sm:w-auto"
+            className="w-full"
           >
             Save Changes
           </LoadingBtn>

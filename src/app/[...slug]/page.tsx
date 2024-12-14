@@ -3,13 +3,12 @@ import { DecryptSite } from "@/components/controlModals/decrypt-old-site";
 import { CreateNewSite } from "@/components/controlModals/create-new-site";
 
 interface NotepadPageProps {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 }
 
-
-export const fetchData = async(mergedSlug: string, siteExists: number) => {
+const fetchData = async(mergedSlug: string, siteExists: number) => {
   const data = siteExists ? await redis.get(mergedSlug) : null;   
   return data;
 }

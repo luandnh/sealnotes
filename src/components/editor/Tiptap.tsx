@@ -23,7 +23,8 @@ export default function RichTextEditor({
         },
         editorProps: {
             attributes: {
-                class: "min-h-[50vh] cursor-text rounded-md border border-black p-5 ring-offset-background focus-within:outline-none"
+                class: "cursor-text rounded-md border border-black p-5 ring-offset-background focus-within:outline-none min-h-[50vh] sm:min-h-[70vh]"
+
             }
         },
         immediatelyRender: false

@@ -37,8 +37,7 @@ export function CreateNewSite({ params }: CreateSiteProps) {
     setPasswordMatch(true);
     
     try {
-      const hash = hashPassword(password);
-      const response = await saveNotes(params, " ", hash);
+      const response = await saveNotes(params, " ");
       setSiteCreated(true);
 
       toast({

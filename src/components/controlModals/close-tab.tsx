@@ -8,28 +8,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { useState } from "react"
 import { deleteNotes } from "@/app/actions/delete"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from 'next/navigation'
 
-type deletProps = {
-    params: string;
-  };
+type DeleteProps = {
+  params: string;
+};
 
-
-export function DeleteSite({params}: deletProps) {
+export function DeleteSite({ params }: DeleteProps) {
   const { toast } = useToast()
   const router = useRouter()
-  const [inputValue, setInputValue] = useState("")
-  const [isConfirmed, setIsConfirmed] = useState(false)
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setInputValue(value)
-    setIsConfirmed(value.toLowerCase() === "confirm")
-  }
 
   const handleDelete = async () => {
     try {
@@ -49,30 +38,21 @@ export function DeleteSite({params}: deletProps) {
       });
     }
   }
-  
-  
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="destructive">X</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>
-            To confirm the deletion, please type &quot;confirm&quot; below. This action cannot be undone.
+            This action cannot be undone. Proceed with deletion?
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <Input
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Type 'confirm' to proceed"
-          />
-        </div>
         <DialogFooter>
-          <Button className="w-full" variant="destructive" disabled={!isConfirmed} onClick={handleDelete}>
+          <Button variant="destructive" className="w-full" onClick={handleDelete}>
             Confirm
           </Button>
         </DialogFooter>
