@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Navbar } from "@/components/navbar";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Hero() {
   const [inputValue, setInputValue] = useState("");
@@ -24,12 +25,14 @@ export default function Hero() {
         <div className="flex justify-center items-center mt-16 md:mt-32 lg:mt-48 px-4">
           <div className="text-center">
             <div className="flex justify-center items-center mb-6">
+                <Link href="https://github.com/harshsbhat/sealnotes" target="_blank">
               <Button
                 variant="outline"
                 className="dark:bg-black bg-white text-black dark:text-white flex justify-center items-center rounded-full px-6 py-3 text-lg"
               >
                 Star us on Github ⭐
               </Button>
+              </Link>
             </div>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto text-center mt-4 relative z-20 py-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
