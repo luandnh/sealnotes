@@ -69,17 +69,6 @@ import {
         disabled: !editor.can().chain().focus().toggleCode().run(),
       },
       {
-        icon: <IoListOutline className="size-5" />,
-        onClick: () => editor.chain().focus().toggleBulletList().run(),
-        isActive: editor.isActive("bulletList"),
-      },
-      {
-        icon: <RiListOrdered2 className="size-5" />,
-        onClick: () => editor.chain().focus().toggleOrderedList().run(),
-        isActive: editor.isActive("orderedList"),
-        disabled: !editor.can().chain().focus().toggleOrderedList().run(),
-      },
-      {
         icon: <AiOutlineUndo className="size-5" />,
         onClick: () => editor.chain().focus().undo().run(),
         isActive: editor.isActive("undo"),

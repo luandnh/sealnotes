@@ -1,6 +1,7 @@
 import { redis } from "@/lib/redis";
 import { DecryptSite } from "@/components/controlModals/decrypt-old-site";
 import { CreateNewSite } from "@/components/controlModals/create-new-site";
+import { hashPassword } from "../utils/vault";
 
 interface NotepadPageProps {
   params: Promise<{
@@ -16,8 +17,8 @@ const fetchData = async(mergedSlug: string, siteExists: number) => {
 export default async function NotepadPage({ params }: NotepadPageProps) {
   // eslint-disable-next-line @typescript-eslint/await-thenable
   const { slug } = await params;
-  const mergedSlug = slug.map((part) => part.toLowerCase()).join("/");
-
+  let mergedSlug = slug.map((part) => part.toLowerCase()).join("/");
+  mergedSlug = hashPassword(mergedSlug);
   const siteExists = await redis.exists(mergedSlug);
   const data = await fetchData(mergedSlug, siteExists)
 
