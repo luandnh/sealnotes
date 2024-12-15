@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Client } from "@/app/[...slug]/client" 
 import { saveNotes } from "@/app/actions/save"
 import { toast } from "@/hooks/use-toast"
-import { hashPassword } from "@/app/utils/vault"
+import { encrypt } from "@/app/utils/vault"
 
 interface CreateSiteProps {
   params: string;
@@ -37,7 +37,8 @@ export function CreateNewSite({ params }: CreateSiteProps) {
     setPasswordMatch(true);
     
     try {
-      const response = await saveNotes(params, " ");
+      const encryptedNotes = encrypt("", password)
+      const response = await saveNotes(params, encryptedNotes);
       setSiteCreated(true);
 
       toast({
@@ -59,7 +60,7 @@ export function CreateNewSite({ params }: CreateSiteProps) {
   return (
     <div className="min-h-screen flex items-center justify-center">
       {siteCreated ? (
-        <Client params={params} decryptedData="" hash={hashPassword(password)}/> // Show Client component if the site is created
+        <Client params={params} decryptedData="" hash={password}/> // Show Client component if the site is created
       ) : (
         <Card className="w-[350px]">
           <CardHeader>

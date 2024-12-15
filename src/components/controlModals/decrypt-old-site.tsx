@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { decrypt, hashPassword } from "@/app/utils/vault"
+import { decrypt } from "@/app/utils/vault"
 
 interface DecryptProps {
   params: string;
@@ -26,7 +26,6 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
   const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async () => {
-    const hash = hashPassword(password)
     setError(null);
     setDecryptedData(null); 
     if (!encryptedData || !password) {
@@ -35,7 +34,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
     }
 
     try {
-      const decrypted = decrypt(encryptedData, hash);
+      const decrypted = decrypt(encryptedData, password);
       setDecryptedData(decrypted); 
     } catch (error) {
       console.error("Decryption error:", error);
@@ -47,7 +46,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
   return (
     <div className="min-h-screen flex items-center justify-center">
       {decryptedData ? (
-        <Client params={params} decryptedData={decryptedData} hash={hashPassword(password)}/>
+        <Client params={params} decryptedData={decryptedData} hash={password}/>
       ) : (
         <Card className="w-[350px]">
           <CardHeader>
