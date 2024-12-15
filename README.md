@@ -1,29 +1,48 @@
-# Create T3 App
+# SealNotes
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+SealNotes is an end-to-end encrypted web-based notepad that stores and manages your notes. 
 
-## What's next? How do I make an app with this?
+## Features
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- **End-to-End Encryption:** Your text is encrypted using AES-256 before being stored on our servers, and even the name of your notepad is securely hashed before being saved in our database.
+  
+- **Rich Text Support:** Create and manage notes with formatting options like bold, italics, and code.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **No Account Required:** Access your notes using a unique URL and password combination.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- **Cross-Platform Access:** Access your secure notes from any device with an internet connection.
 
-## Learn More
+- **Lightweight and Minimalist UI:** Enjoy a clean, responsive interface for distraction-free note-taking.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Usage
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- Visit [https://sealnotes.com/](https://sealnotes.com/)
+  
+- Create a new note by entering a unique name for the note’s URL.
 
-## How do I deploy this?
+- Set a strong password for encryption.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- Write or paste your text into the note editor.
+
+- Click "Save" to encrypt and store your note.
+
+- To access a saved note, enter the URL and password.
+
+## Security
+
+- **Encryption:** All data is encrypted client-side using AES-256. Only the encrypted data is stored on the server.
+
+- **Privacy:** We do not store or have access to your passwords. Without the correct password, notes cannot be decrypted.
+
+- **No Tracking:** Sealnotes does not track user activity or store unnecessary metadata.
+
+## License
+
+This project is licensed under the [MIT License](https://github.com/harshsbhat/sealnotes?tab=MIT-1-ov-file).
+
+## Support
+
+For support or inquiries, please contact us at <a href="mailto:harsh121102@gmail.com">harsh121102@gmail.com</a>
+
+
