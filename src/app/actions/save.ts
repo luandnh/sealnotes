@@ -3,7 +3,6 @@ import { redis } from "@/lib/redis";
 
 export async function saveNotes(params: string, encryptedNotes: string, initHash: string, currentHash: string) {
   const hashFromDb = await redis.hget(params, "currentHash");
-  console.log("Save", hashFromDb, initHash)
   if (hashFromDb === null || initHash === hashFromDb) {
     await redis.hset(params, {
       currentHash,

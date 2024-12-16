@@ -3,12 +3,10 @@ import {
     RiItalic,
     RiStrikethrough,
     RiCodeSSlashLine,
-    RiListOrdered2,
   } from "react-icons/ri";
   import { type Editor } from "@tiptap/react";
   import { AiOutlineRedo, AiOutlineUndo } from "react-icons/ai";
   import { BsTypeUnderline } from "react-icons/bs";
-  import { IoListOutline } from "react-icons/io5";
 
 
   const Button = ({

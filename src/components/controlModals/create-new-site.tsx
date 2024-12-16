@@ -60,7 +60,7 @@ export function CreateNewSite({ params }: CreateSiteProps) {
   return (
     <div className="min-h-screen flex items-center justify-center">
       {siteCreated ? (
-        <Client params={params} decryptedData="" hash={password}/> // Show Client component if the site is created
+        <Client params={params} decryptedData="" hash={password}/>
       ) : (
         <Card className="w-[350px]">
           <CardHeader>

@@ -4,7 +4,6 @@ import { redis } from "@/lib/redis";
 
 export async function deleteNotes(params: string, initHash: string) {
   const hashFromDb = await redis.hget(params, "currentHash");
-  console.log(hashFromDb, initHash)
   if (hashFromDb === null || initHash === hashFromDb) {
     await redis.del(params);
     return {
