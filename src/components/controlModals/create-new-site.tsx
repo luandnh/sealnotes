@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Client } from "@/app/[...slug]/client" 
 import { saveNotes } from "@/app/actions/save"
 import { toast } from "@/hooks/use-toast"
-import { encrypt } from "@/app/utils/vault"
+import { encrypt, sha256 } from "@/app/utils/vault"
 
 interface CreateSiteProps {
   params: string;
@@ -25,7 +25,8 @@ export function CreateNewSite({ params }: CreateSiteProps) {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [passwordMatch, setPasswordMatch] = React.useState(true);
-  const [siteCreated, setSiteCreated] = React.useState(false); // State to toggle view
+  const [siteCreated, setSiteCreated] = React.useState(false); 
+  const initHash = sha256("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +36,9 @@ export function CreateNewSite({ params }: CreateSiteProps) {
     }
 
     setPasswordMatch(true);
-    
     try {
       const encryptedNotes = encrypt("", password)
-      const response = await saveNotes(params, encryptedNotes);
+      const response = await saveNotes(params, encryptedNotes, initHash, initHash);
       setSiteCreated(true);
 
       toast({
@@ -50,7 +50,7 @@ export function CreateNewSite({ params }: CreateSiteProps) {
       console.error("Error saving note:", error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred. Please contact harsh121102@gmail.com",
+        description: "An unexpected error occurred. Try again later or refresh the page.",
         variant: "destructive",
       });
     }

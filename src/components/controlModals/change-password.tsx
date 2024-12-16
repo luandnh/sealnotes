@@ -1,5 +1,5 @@
 import { saveNotes } from "@/app/actions/save"
-import { encrypt } from "@/app/utils/vault"
+import { encrypt, sha256 } from "@/app/utils/vault"
 import { Button } from "@/components/ui/button"
 import LoadingBtn from "@/components/LoadingBtn";
 import {
@@ -18,9 +18,10 @@ import { useState } from "react"
 type ChangePasswordProps = {
   params: string;
   values: string;
+  currentInitHash: string;
 };
 
-export function ChangePassword({ params, values }: ChangePasswordProps) {
+export function ChangePassword({ params, values, currentInitHash }: ChangePasswordProps) {
   const { toast } = useToast()
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -45,8 +46,9 @@ export function ChangePassword({ params, values }: ChangePasswordProps) {
     setIsSubmitting(true) 
 
     try {
+      const currentHash = sha256(values)
       const encryptedNotes = encrypt(values, newPassword)
-      await saveNotes(params, encryptedNotes)
+      await saveNotes(params, encryptedNotes, currentInitHash, currentHash)
       
       toast({
         title: "Success!",
@@ -58,7 +60,7 @@ export function ChangePassword({ params, values }: ChangePasswordProps) {
       console.error("Error saving notes:", error)
       toast({
         title: "Error",
-        description: "An unexpected error occurred. Please contact harsh121102@gmail.com",
+        description: "An unexpected error occurred. Try again later or refresh the page.",
         variant: "destructive",
       })
     } finally {

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { decrypt } from "@/app/utils/vault"
+import { decrypt, sha256 } from "@/app/utils/vault"
 
 interface DecryptProps {
   params: string;
@@ -23,11 +23,13 @@ interface DecryptProps {
 export function DecryptSite({ params, encryptedData }: DecryptProps) {
   const [password, setPassword] = React.useState("");
   const [decryptedData, setDecryptedData] = React.useState<string | null>(null);
+  const [initHash, setInitHash] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async () => {
     setError(null);
     setDecryptedData(null); 
+    setInitHash(null)
     if (!encryptedData || !password) {
       setError("Encrypted data or password is missing.");
       return;
@@ -36,6 +38,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
     try {
       const decrypted = decrypt(encryptedData, password);
       setDecryptedData(decrypted); 
+      setInitHash(sha256(decrypted))
     } catch (error) {
       console.error("Decryption error:", error);
       setError("Failed to decrypt data. Please check your password.");

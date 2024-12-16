@@ -16,10 +16,11 @@ import { useRouter } from 'next/navigation'
 
 type deletProps = {
     params: string;
+    currentInitHash: string;
   };
 
 
-export function DeleteSite({params}: deletProps) {
+export function DeleteSite({params, currentInitHash}: deletProps) {
   const { toast } = useToast()
   const router = useRouter()
   const [inputValue, setInputValue] = useState("")
@@ -33,7 +34,7 @@ export function DeleteSite({params}: deletProps) {
 
   const handleDelete = async () => {
     try {
-      const response = await deleteNotes(params);
+      const response = await deleteNotes(params, currentInitHash);
       toast({
         title: "Success!",
         description: response.message,
@@ -44,7 +45,7 @@ export function DeleteSite({params}: deletProps) {
       console.error("Error deleting note:", error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred. Please contact harsh121102@gmail.com",
+        description: "An unexpected error occurred. Try again later or refresh the page.",
         variant: "destructive",
       });
     }
