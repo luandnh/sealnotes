@@ -1,6 +1,4 @@
 import { LockKeyhole, IdCard, Github, GlobeLock, type LucideIcon } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import Link from 'next/link';
 import { Card, CardContent } from "@/components/ui/card"
 
 type FeatureProps = {

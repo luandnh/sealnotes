@@ -6,7 +6,7 @@ export default function HowToUse() {
   const steps = [
     {
       title: "Step 1",
-      description: "Create a notepad with a unique name by simply hovering to sealnotes.com/your-name",
+      description: "Create your own notepad at sealnotes.com/your-name.",
     },
     {
       title: "Step 2",
@@ -24,7 +24,7 @@ export default function HowToUse() {
         {steps.map((step, index) => (
           <Card key={index} className="w-full max-w-sm h-48">
             <CardContent className="flex flex-col items-center justify-center p-6 text-center h-full">
-              <h2 className="text-2xl font-bold">{step.title}</h2>
+              <h2 className="text-2xl font-bold flex">{step.title}</h2>
               <p className="mt-2 text-sm text-gray-600">{step.description}</p>
             </CardContent>
           </Card>

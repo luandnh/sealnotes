@@ -26,7 +26,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { createHash } from 'crypto';
 import Link from "next/link";
 import { DeleteSite } from "@/components/controlModals/delete-site";
 import { ChangePassword } from "@/components/controlModals/change-password";
@@ -54,7 +53,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
   const [isDirty, setIsDirty] = useState<boolean[]>([]);
   const [editorContentKeys, setEditorContentKeys] = useState<number[]>([]);
   const tabsListRef = useRef<HTMLDivElement>(null);
-  const [currentInitHash, setCurrentInitHash] = useState(createHash('sha256').update(decryptedData).digest('hex'));
+  const [currentInitHash, setCurrentInitHash] = useState(sha256(decryptedData));
 
   const initialTabs: TabsValues = (() => {
     try {
@@ -175,7 +174,6 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
       }
     }
   };
-
   function ButtonGroup() {
     return (
       <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 sm:gap-0">
