@@ -101,12 +101,20 @@ export function CreateNewSite({ params }: CreateSiteProps) {
                   )}
                 </div>
               </div>
+<<<<<<< HEAD
           <div className="flex gap-2 mt-4">
+=======
+          <CardFooter className="flex gap-2 mt-4">
+>>>>>>> f345112f32ee454ba9a6103809fe779f0b10b0cd
             <Button type="submit">Create</Button>
             <Link href="/">
               <Button type="button" variant="outline">Cancel</Button>
             </Link>
+<<<<<<< HEAD
           </div>
+=======
+          </CardFooter>
+>>>>>>> f345112f32ee454ba9a6103809fe779f0b10b0cd
             </form>
           </CardContent>
         </Card>
