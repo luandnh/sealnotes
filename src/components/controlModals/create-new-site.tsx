@@ -1,7 +1,7 @@
-"use client"
-import * as React from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+"use client";
+import * as React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,13 +9,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Client } from "@/app/[...slug]/client" 
-import { saveNotes } from "@/app/actions/save"
-import { toast } from "@/hooks/use-toast"
-import { encrypt, sha256 } from "@/app/utils/vault"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Client } from "@/app/[...slug]/client";
+import { saveNotes } from "@/app/actions/save";
+import { toast } from "@/hooks/use-toast";
+import { encrypt, sha256 } from "@/app/utils/vault";
 
 interface CreateSiteProps {
   params: string;
@@ -25,8 +25,8 @@ export function CreateNewSite({ params }: CreateSiteProps) {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [passwordMatch, setPasswordMatch] = React.useState(true);
-  const [siteCreated, setSiteCreated] = React.useState(false); 
-  const initHash = sha256("")
+  const [siteCreated, setSiteCreated] = React.useState(false);
+  const initHash = sha256("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,8 +37,13 @@ export function CreateNewSite({ params }: CreateSiteProps) {
 
     setPasswordMatch(true);
     try {
-      const encryptedNotes = encrypt("", password)
-      const response = await saveNotes(params, encryptedNotes, initHash, initHash);
+      const encryptedNotes = encrypt("", password);
+      const response = await saveNotes(
+        params,
+        encryptedNotes,
+        initHash,
+        initHash,
+      );
       setSiteCreated(true);
 
       toast({
@@ -50,17 +55,17 @@ export function CreateNewSite({ params }: CreateSiteProps) {
       console.error("Error saving note:", error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred. Try again later or refresh the page.",
+        description:
+          "An unexpected error occurred. Try again later or refresh the page.",
         variant: "destructive",
       });
     }
   };
 
-
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center">
       {siteCreated ? (
-        <Client params={params} decryptedData="" hash={password}/>
+        <Client params={params} decryptedData="" hash={password} />
       ) : (
         <Card className="w-[350px]">
           <CardHeader>
@@ -69,7 +74,8 @@ export function CreateNewSite({ params }: CreateSiteProps) {
               Create a new site for your notepad.
               <br /> <br />
               <span className="font-semibold">
-                We do not store user information, so the password cannot be recovered if lost. Keep it safe.
+                We do not store user information, so the password cannot be
+                recovered if lost. Keep it safe.
               </span>
             </CardDescription>
           </CardHeader>
@@ -97,24 +103,20 @@ export function CreateNewSite({ params }: CreateSiteProps) {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                   {!passwordMatch && (
-                    <p className="text-red-500 text-xs mt-1">Passwords do not match</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      Passwords do not match
+                    </p>
                   )}
                 </div>
               </div>
-<<<<<<< HEAD
-          <div className="flex gap-2 mt-4">
-=======
-          <CardFooter className="flex gap-2 mt-4">
->>>>>>> f345112f32ee454ba9a6103809fe779f0b10b0cd
-            <Button type="submit">Create</Button>
-            <Link href="/">
-              <Button type="button" variant="outline">Cancel</Button>
-            </Link>
-<<<<<<< HEAD
-          </div>
-=======
-          </CardFooter>
->>>>>>> f345112f32ee454ba9a6103809fe779f0b10b0cd
+              <div className="mt-4 flex gap-2">
+                <Button type="submit">Create</Button>
+                <Link href="/">
+                  <Button type="button" variant="outline">
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
             </form>
           </CardContent>
         </Card>
