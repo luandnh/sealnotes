@@ -101,14 +101,14 @@ export function CreateNewSite({ params }: CreateSiteProps) {
                   )}
                 </div>
               </div>
-            </form>
-          </CardContent>
-          <CardFooter className="flex gap-2">
-            <Button type="submit" onClick={handleSubmit}>Create</Button>
+          <CardFooter className="flex gap-2 mt-4">
+            <Button type="submit">Create</Button>
             <Link href="/">
               <Button type="button" variant="outline">Cancel</Button>
             </Link>
           </CardFooter>
+            </form>
+          </CardContent>
         </Card>
       )}
     </div>
