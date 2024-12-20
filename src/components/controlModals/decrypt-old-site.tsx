@@ -62,7 +62,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="password">Password</Label>
@@ -78,14 +78,14 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
                   <p className="text-red-500 text-sm">{error}</p>
                 )}
               </div>
-            </form>
-          </CardContent>
           <CardFooter className="flex gap-2">
-            <Button type="submit" onClick={handleSubmit}>Decrypt</Button>
+            <Button type="submit" >Decrypt</Button>
             <Link href="/">
               <Button type="button" variant="outline">Cancel</Button>
             </Link>
           </CardFooter>
+            </form>
+          </CardContent>
         </Card>
       )}
     </div>
