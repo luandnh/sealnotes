@@ -78,7 +78,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
                   <p className="text-red-500 text-sm">{error}</p>
                 )}
               </div>
-          <CardFooter className="flex gap-2">
+          <CardFooter className="flex gap-2 mt-4">
             <Button type="submit" >Decrypt</Button>
             <Link href="/">
               <Button type="button" variant="outline">Cancel</Button>
