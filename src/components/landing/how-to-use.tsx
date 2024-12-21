@@ -23,8 +23,8 @@ export default function HowToUse() {
     <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-10 w-[1000px]">
         {steps.map((step, index) => (
           <Card key={index} className="w-full max-w-sm h-48">
-            <CardContent className="flex flex-col items-center justify-center p-6 text-center h-full">
-              <h2 className="text-2xl font-bold flex">{step.title}</h2>
+            <CardContent className="flex flex-col mt-10 p-6 text-center h-full">
+              <h2 className="text-2xl font-bold">{step.title}</h2>
               <p className="mt-2 text-sm text-gray-600">{step.description}</p>
             </CardContent>
           </Card>
