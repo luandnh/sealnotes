@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { decrypt } from "@/app/utils/vault"
+import { decrypt, sha256 } from "@/app/utils/vault"
 
 interface DecryptProps {
   params: string;
@@ -23,11 +23,13 @@ interface DecryptProps {
 export function DecryptSite({ params, encryptedData }: DecryptProps) {
   const [password, setPassword] = React.useState("");
   const [decryptedData, setDecryptedData] = React.useState<string | null>(null);
+  const [initHash, setInitHash] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async () => {
     setError(null);
     setDecryptedData(null); 
+    setInitHash(null)
     if (!encryptedData || !password) {
       setError("Encrypted data or password is missing.");
       return;
@@ -36,6 +38,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
     try {
       const decrypted = decrypt(encryptedData, password);
       setDecryptedData(decrypted); 
+      setInitHash(sha256(decrypted))
     } catch (error) {
       console.error("Decryption error:", error);
       setError("Failed to decrypt data. Please check your password.");
@@ -59,7 +62,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="password">Password</Label>
@@ -75,14 +78,14 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
                   <p className="text-red-500 text-sm">{error}</p>
                 )}
               </div>
-            </form>
-          </CardContent>
-          <CardFooter className="flex gap-2">
-            <Button type="submit" onClick={handleSubmit}>Decrypt</Button>
+          <div className="flex gap-2 mt-4">
+            <Button type="submit" >Decrypt</Button>
             <Link href="/">
               <Button type="button" variant="outline">Cancel</Button>
             </Link>
-          </CardFooter>
+          </div>
+            </form>
+          </CardContent>
         </Card>
       )}
     </div>

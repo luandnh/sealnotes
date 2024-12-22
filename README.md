@@ -37,6 +37,40 @@ SealNotes is an end-to-end encrypted web-based notepad that stores and manages y
 
 - **No Tracking:** Sealnotes does not track user activity or store unnecessary metadata.
 
+## Local Setup
+
+- Clone the repo.
+
+```
+git clone https://github.com/harshsbhat/sealnotes.git
+cd sealnotes
+```
+
+- Install dependencies:
+
+```
+pnpm install
+```
+
+- Create a `.env` file:
+
+```
+cp .env.example .env
+```
+
+- Create a Redis database with Upstash ( Upstash offers a serverless Redis database with a generous free tier of up to 10,000 requests per day. That's more than enough.)  Add the following environment variables:
+
+```
+UPSTASH_REDIS_REST_URL=""
+UPSTASH_REDIS_REST_TOKEN=""
+```
+
+- Run the project: 
+
+```
+pnpm dev
+```
+
 ## License
 
 This project is licensed under the [MIT License](https://github.com/harshsbhat/sealnotes?tab=MIT-1-ov-file).

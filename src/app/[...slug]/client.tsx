@@ -14,9 +14,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { saveNotes } from "@/app/actions/save";
 import RichTextEditor from "@/components/editor/Tiptap";
-import ButtonGroup from "./ButtonGroup";
-import { decrypt, encrypt } from "@/app/utils/vault";
-import { fetchData } from "../actions/refresh";
+import { decrypt, encrypt, sha256 } from "@/app/utils/vault";
+import { refresh } from "../actions/refresh";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -27,6 +26,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { DeleteSite } from "@/components/controlModals/delete-site";
+import { ChangePassword } from "@/components/controlModals/change-password";
+import LoadingBtn from "@/components/LoadingBtn";
+
 
 const noteSchema = z.object({
   title: z.string(),
@@ -49,6 +53,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
   const [isDirty, setIsDirty] = useState<boolean[]>([]);
   const [editorContentKeys, setEditorContentKeys] = useState<number[]>([]);
   const tabsListRef = useRef<HTMLDivElement>(null);
+  const [currentInitHash, setCurrentInitHash] = useState(sha256(decryptedData));
 
   const initialTabs: TabsValues = (() => {
     try {
@@ -89,7 +94,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
 
   async function onRefresh() {
     try {
-      const currentData = await fetchData(params);
+      const currentData = await refresh(params);
       const decrypted = decrypt(currentData as string, hash);
       const refreshedTabs = JSON.parse(decrypted) as { title: string; description: string }[];
       toast({
@@ -100,6 +105,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
       setValue("tabs", refreshedTabs);
       setIsDirty(new Array(refreshedTabs.length).fill(false));
       setEditorContentKeys((prevKeys) => prevKeys.map((key) => key + 1));
+      
     } catch (error) {
       console.error("Refresh error:", error);
       toast({
@@ -112,20 +118,23 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
 
   async function onSubmit(values: { tabs: TabsValues }) {
     try {
-      const encryptedNotes = encrypt(JSON.stringify(values.tabs), hash)
-      const response = await saveNotes(params, encryptedNotes);
+      const jsonData = JSON.stringify(values.tabs)
+      const currentHash = sha256(jsonData);
+      const encryptedNotes = encrypt(jsonData, hash);
+      const response = await saveNotes(params, encryptedNotes, currentInitHash, currentHash);
       toast({
         title: "Success!",
         description: response.message,
         variant: "default",
       });
       setIsDirty(new Array(values.tabs.length).fill(false));
+      setCurrentInitHash(response.currentHash);
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
+        title: "Error saving your notes",
         description:
-          "An unexpected error occurred. Please contact harsh121102@gmail.com",
+          "We are unable to save the data at the moment. This is usually because of consecutive write operations. Backup the data and then refresh the page.",
         variant: "destructive",
       });
     }
@@ -165,18 +174,34 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
       }
     }
   };
+  function ButtonGroup() {
+    return (
+      <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 sm:gap-0">
+        <Link href="/">
+          <div className="text-lg font-semibold hidden sm:block">
+            SealNotes
+          </div>
+        </Link>
+
+        <div className="flex flex-col sm:flex-row sm:justify-end gap-2 w-full sm:w-auto">
+          <Button variant="outline" className="w-full sm:w-auto" onClick={onRefresh}>
+            Refresh
+          </Button>
+          <ChangePassword params={params} values={JSON.stringify(getValues("tabs"))} currentInitHash={currentInitHash}/>
+          <LoadingBtn onClick={handleSubmit(onSubmit)} loading={isSubmitting} className="w-full sm:w-auto">
+            Save
+          </LoadingBtn>
+          <DeleteSite params={params} currentInitHash={currentInitHash}/>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center w-full h-[100vh]">
       <Form {...form}>
         <div className="space-y-6 p-4 w-full max-w-4xl">
-          <ButtonGroup
-            onSubmit={handleSubmit(onSubmit)}
-            onRefresh={onRefresh}
-            isSubmitting={isSubmitting}
-            params={params}
-            values={JSON.stringify(getValues("tabs"))}
-          />
+          <ButtonGroup />
           <Tabs 
               value={activeTab.toString()} 
               onValueChange={(value: string) => setActiveTab(parseInt(value))}

@@ -4,14 +4,26 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 
-import { TRPCReactProvider } from "@/trpc/react";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "SealNotes",
-  description: "Lightweight Encrypted Notepad",
+  title: "SealNotes: Secure, Lightweight Encrypted Notepad for Privacy",
+  description: "SealNotes: A free, open-source encrypted notepad for secure and private note-taking. Enjoy rich text editing and complete privacy—no login required.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  keywords: [
+    "encrypted notepad",
+    "secure note-taking",
+    "private notes",
+    "open-source notepad",
+    "rich text editing",
+    "offline note-taking",
+    "no login required",
+    "free notepad app",
+    "privacy-focused notes",
+    "secure writing tool"
+  ],
 };
+
 
 export default function RootLayout({
   children,
@@ -20,7 +32,7 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
         <ThemeProvider defaultTheme="system">
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        {children}
         <Toaster />
         </ThemeProvider>    
       </body>

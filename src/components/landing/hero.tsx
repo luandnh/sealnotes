@@ -22,7 +22,7 @@ export default function Hero() {
     <main className="flex justify-center items-center mt-5">
       <div className="w-[1000px]">
         <Navbar />
-        <div className="flex justify-center items-center mt-16 md:mt-32 lg:mt-48 px-4">
+        <div className="flex justify-center items-center mt-20 md:mt-30 lg:mt-40 px-4 ">
           <div className="text-center">
             <div className="flex justify-center items-center mb-6">
                 <Link href="https://github.com/harshsbhat/sealnotes" target="_blank">

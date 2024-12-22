@@ -11,6 +11,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.9.1(react-hook-form@7.54.0(react@18.3.1))
+      '@radix-ui/react-accordion':
+        specifier: ^1.2.2
+        version: 1.2.2(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-aspect-ratio':
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -113,6 +116,9 @@ importers:
       drizzle-orm:
         specifier: ^0.33.0
         version: 0.33.0(@types/react@18.3.14)(postgres@3.4.5)(react@18.3.1)
+      embla-carousel-react:
+        specifier: ^8.5.1
+        version: 8.5.1(react@18.3.1)
       framer-motion:
         specifier: ^11.13.1
         version: 11.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -799,6 +805,19 @@ packages:
   '@radix-ui/primitive@1.1.1':
     resolution: {integrity: sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==}
 
+  '@radix-ui/react-accordion@1.2.2':
+    resolution: {integrity: sha512-b1oh54x4DMCdGsB4/7ahiSrViXxaBwRPotiZNnYXjLha9vfuURSAZErki6qjDoSIV0eXx5v57XnTGVtGwnfp2g==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@radix-ui/react-arrow@1.1.0':
     resolution: {integrity: sha512-FmlW1rCg7hBpEBwFbjHwCW6AmWLQM6g/v0Sn8XbP9NvmSZ2San1FpQeyPtufzOMSIx7Y4dzjlHoifhp+7NkZhw==}
     peerDependencies:
@@ -827,6 +846,19 @@ packages:
 
   '@radix-ui/react-aspect-ratio@1.1.0':
     resolution: {integrity: sha512-dP87DM/Y7jFlPgUZTlhx6FF5CEzOiaxp2rBCKlaXlpH5Ip/9Fg5zZ9lDOQ5o/MOfUlf36eak14zoWYpgcgGoOg==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
+  '@radix-ui/react-collapsible@1.1.2':
+    resolution: {integrity: sha512-PliMB63vxz7vggcyq0IxNYk8vGDrLXVWw4+W4B8YnwI1s18x7YZYqlG9PLX7XxAJUi0g2DxP4XKJMFHh/iVh9A==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -2324,6 +2356,19 @@ packages:
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
+
+  embla-carousel-react@8.5.1:
+    resolution: {integrity: sha512-z9Y0K84BJvhChXgqn2CFYbfEi6AwEr+FFVVKm/MqbTQ2zIzO1VQri6w67LcfpVF0AjbhwVMywDZqY4alYkjW5w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+
+  embla-carousel-reactive-utils@8.5.1:
+    resolution: {integrity: sha512-n7VSoGIiiDIc4MfXF3ZRTO59KDp820QDuyBDGlt5/65+lumPHxX2JLz0EZ23hZ4eg4vZGUXwMkYv02fw2JVo/A==}
+    peerDependencies:
+      embla-carousel: 8.5.1
+
+  embla-carousel@8.5.1:
+    resolution: {integrity: sha512-JUb5+FOHobSiWQ2EJNaueCNT/cQU9L6XWBbWmorWPQT9bkbk+fhsuLr8wWrzXKagO3oWszBO7MSx+GfaRk4E6A==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4421,6 +4466,23 @@ snapshots:
 
   '@radix-ui/primitive@1.1.1': {}
 
+  '@radix-ui/react-accordion@1.2.2(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.1
+      '@radix-ui/react-collapsible': 1.1.2(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-collection': 1.1.1(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-context': 1.1.1(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-direction': 1.1.0(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-id': 1.1.0(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.1(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.14)(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.14
+      '@types/react-dom': 18.3.2
+
   '@radix-ui/react-arrow@1.1.0(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-primitive': 2.0.0(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4442,6 +4504,22 @@ snapshots:
   '@radix-ui/react-aspect-ratio@1.1.0(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-primitive': 2.0.0(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.14
+      '@types/react-dom': 18.3.2
+
+  '@radix-ui/react-collapsible@1.1.2(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.1
+      '@radix-ui/react-compose-refs': 1.1.1(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-context': 1.1.1(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-id': 1.1.0(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.2(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.0.1(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@18.3.14)(react@18.3.1)
+      '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@18.3.14)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
@@ -5992,6 +6070,18 @@ snapshots:
       gopd: 1.2.0
 
   eastasianwidth@0.2.0: {}
+
+  embla-carousel-react@8.5.1(react@18.3.1):
+    dependencies:
+      embla-carousel: 8.5.1
+      embla-carousel-reactive-utils: 8.5.1(embla-carousel@8.5.1)
+      react: 18.3.1
+
+  embla-carousel-reactive-utils@8.5.1(embla-carousel@8.5.1):
+    dependencies:
+      embla-carousel: 8.5.1
+
+  embla-carousel@8.5.1: {}
 
   emoji-regex@8.0.0: {}
 
