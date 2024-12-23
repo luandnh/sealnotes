@@ -29,7 +29,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { DeleteSite } from "@/components/controlModals/delete-site";
-import { ChangePassword } from "@/components/controlModals/change-password";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import LoadingBtn from "@/components/LoadingBtn";
 
 
@@ -46,6 +54,15 @@ interface ClientProps {
   hash: string;
 }
 
+
+
+type ChangePasswordProps = {
+  params: string;
+  values: string;
+  currentInitHash: string;
+};
+
+
 type TabsValues = z.infer<typeof tabsSchema>;
 
 export function Client({ params, decryptedData, hash }: ClientProps) {
@@ -54,6 +71,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
   const [isDirty, setIsDirty] = useState<boolean[]>([]);
   const [editorContentKeys, setEditorContentKeys] = useState<number[]>([]);
   const tabsListRef = useRef<HTMLDivElement>(null);
+  const [password, setPassword] = useState(hash)
   const [currentInitHash, setCurrentInitHash] = useState(sha256(decryptedData));
 
   const initialTabs: TabsValues = (() => {
@@ -96,7 +114,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
   async function onRefresh() {
     try {
       const currentData = await refresh(params);
-      const decrypted = decrypt(currentData as string, hash);
+      const decrypted = decrypt(currentData as string, password);
       const refreshedTabs = JSON.parse(decrypted) as { title: string; description: string }[];
       toast({
         title: "Refreshed!",
@@ -121,7 +139,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
     try {
       const jsonData = JSON.stringify(values.tabs)
       const currentHash = sha256(jsonData);
-      const encryptedNotes = encrypt(jsonData, hash);
+      const encryptedNotes = encrypt(jsonData, password);
       const response = await saveNotes(params, encryptedNotes, currentInitHash, currentHash);
       toast({
         title: "Success!",
@@ -175,6 +193,97 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
       }
     }
   };
+
+  function ChangePassword({ params, values, currentInitHash }: ChangePasswordProps) {
+    const { toast } = useToast()
+    const [newPassword, setNewPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false) 
+  
+    const handleNewPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setNewPassword(e.target.value)
+    }
+  
+    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setConfirmPassword(e.target.value)
+    }
+  
+    const isPasswordsMatch = newPassword === confirmPassword
+    const isFormValid = newPassword && confirmPassword && isPasswordsMatch
+  
+    const handleSubmit = async () => {
+      if (!isFormValid) {
+        return
+      }
+  
+      setIsSubmitting(true) 
+  
+      try {
+        const currentHash = sha256(values)
+        const encryptedNotes = encrypt(values, newPassword)
+        const response = await saveNotes(params, encryptedNotes, currentInitHash, currentHash)
+        
+        toast({
+          title: "Success!",
+          description: "Password has been successfully changed.",
+          variant: "default",
+        })
+        setPassword((newPassword))
+        setCurrentInitHash(response.currentHash);
+      } catch (error) {
+        console.error("Error saving notes:", error)
+        toast({
+          title: "Error",
+          description: "An unexpected error occurred. Try again later or refresh the page.",
+          variant: "destructive",
+        })
+      } finally {
+        setIsSubmitting(false) 
+      }
+    }
+  
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Change Password</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Change your password</DialogTitle>
+            <DialogDescription>
+              Enter your new password below and confirm it to save the changes.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <Input
+              type="password"
+              value={newPassword}
+              onChange={handleNewPasswordChange}
+              placeholder="Enter new password"
+            />
+            <Input
+              type="password"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              placeholder="Confirm new password"
+            />
+          </div>
+          <DialogFooter>
+            <LoadingBtn 
+              disabled={!isFormValid || isSubmitting} 
+              onClick={handleSubmit} 
+              loading={isSubmitting} 
+              className="w-full"
+            >
+              Save Changes
+            </LoadingBtn>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+  
+
   function ButtonGroup() {
     return (
       <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 sm:gap-0">
