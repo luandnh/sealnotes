@@ -19,6 +19,7 @@ import { refresh } from "../actions/refresh";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import { PlusCircle, X, ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import {
   DropdownMenu,
@@ -192,6 +193,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
             Save
           </LoadingBtn>
           <DeleteSite params={params} currentInitHash={currentInitHash}/>
+          <ModeToggle />
         </div>
       </div>
     );

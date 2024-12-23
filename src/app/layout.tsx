@@ -4,8 +4,6 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 
-import { ThemeProvider } from "@/components/theme-provider";
-
 export const metadata: Metadata = {
   title: "SealNotes: Secure, Lightweight Encrypted Notepad for Privacy",
   description: "SealNotes: A free, open-source encrypted notepad for secure and private note-taking. Enjoy rich text editing and complete privacy—no login required.",
@@ -31,10 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <ThemeProvider defaultTheme="system">
         {children}
         <Toaster />
-        </ThemeProvider>    
       </body>
     </html>
   );
