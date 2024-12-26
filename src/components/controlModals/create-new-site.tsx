@@ -26,6 +26,9 @@ export function CreateNewSite({ params }: CreateSiteProps) {
   const [passwordMatch, setPasswordMatch] = React.useState(true);
   const [siteCreated, setSiteCreated] = React.useState(false);
   const initHash = sha256("");
+  const handleCancel = () => {
+    window.location.href = "/"
+ };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,11 +113,9 @@ export function CreateNewSite({ params }: CreateSiteProps) {
               </div>
               <div className="mt-4 flex gap-2">
                 <Button type="submit">Create</Button>
-                <Link href="/" passHref={true}>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" onClick={handleCancel}>
                   Cancel
                 </Button>
-              </Link>
 
               </div>
             </form>

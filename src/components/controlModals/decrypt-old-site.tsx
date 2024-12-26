@@ -24,7 +24,9 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
   const [decryptedData, setDecryptedData] = React.useState<string | null>(null);
   const [initHash, setInitHash] = React.useState<string | null>(null);
   const [error, setError] = React.useState<string | null>(null);
-
+  const handleCancel = () => {
+     window.location.href = "/"
+  };
   const handleSubmit = async () => {
     setError(null);
     setDecryptedData(null); 
@@ -79,9 +81,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
               </div>
           <div className="flex gap-2 mt-4">
             <Button type="submit" >Decrypt</Button>
-            <Link href="/" passHref={true}>
-              <Button type="button" variant="outline">Cancel</Button>
-            </Link>
+              <Button type="button" variant="outline" onClick={handleCancel}>Cancel</Button>
           </div>
             </form>
           </CardContent>
