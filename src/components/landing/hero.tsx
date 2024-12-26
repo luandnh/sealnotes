@@ -4,17 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Navbar } from "@/components/navbar";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Hero() {
   const [inputValue, setInputValue] = useState("");
-  const router = useRouter(); 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      router.push(`/${inputValue.trim()}`);
+      window.location.href = `/${inputValue.trim()}`;
     }
   };
 

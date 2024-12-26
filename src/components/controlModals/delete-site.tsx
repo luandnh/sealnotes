@@ -21,8 +21,7 @@ type deletProps = {
 
 
 export function DeleteSite({params, currentInitHash}: deletProps) {
-  const { toast } = useToast()
-  const router = useRouter()
+  const { toast } = useToast() 
   const [inputValue, setInputValue] = useState("")
   const [isConfirmed, setIsConfirmed] = useState(false)
 
@@ -40,7 +39,7 @@ export function DeleteSite({params, currentInitHash}: deletProps) {
         description: response.message,
         variant: "default",
       });
-      router.push("/")
+      window.location.href = "/";
     } catch (error) {
       console.error("Error deleting note:", error);
       toast({
