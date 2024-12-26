@@ -110,11 +110,12 @@ export function CreateNewSite({ params }: CreateSiteProps) {
               </div>
               <div className="mt-4 flex gap-2">
                 <Button type="submit">Create</Button>
-                <Link href="/">
-                  <Button type="button" variant="outline">
-                    Cancel
-                  </Button>
-                </Link>
+                <Link href="/" passHref>
+                <Button type="button" variant="outline">
+                  Cancel
+                </Button>
+              </Link>
+
               </div>
             </form>
           </CardContent>

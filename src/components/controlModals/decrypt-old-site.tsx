@@ -79,7 +79,7 @@ export function DecryptSite({ params, encryptedData }: DecryptProps) {
               </div>
           <div className="flex gap-2 mt-4">
             <Button type="submit" >Decrypt</Button>
-            <Link href="/">
+            <Link href="/" passHref>
               <Button type="button" variant="outline">Cancel</Button>
             </Link>
           </div>
