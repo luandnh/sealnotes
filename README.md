@@ -77,6 +77,6 @@ This project is licensed under the [MIT License](https://github.com/harshsbhat/s
 
 ## Support
 
-For support or inquiries, please contact us at <a href="mailto:harsh121102@gmail.com">harsh121102@gmail.com</a>
+For support or inquiries, please contact us at <a href="mailto:support@sealnotes.com">support@sealnotes.com</a>
 
 
