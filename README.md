@@ -58,11 +58,10 @@ pnpm install
 cp .env.example .env
 ```
 
-- Create a Redis database with Upstash ( Upstash offers a serverless Redis database with a generous free tier of up to 10,000 requests per day. That's more than enough.)  Add the following environment variables:
+- Spin up the docker file to start the HTTP Redis
 
 ```
-UPSTASH_REDIS_REST_URL=""
-UPSTASH_REDIS_REST_TOKEN=""
+docker compose up -d
 ```
 
 - Run the project: 
