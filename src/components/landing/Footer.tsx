@@ -15,6 +15,15 @@ export function Footer() {
           >
             @HarshBhatX
           </Link>{' '}
+          and {' '}
+          <Link 
+            href="https://twitter.com/AbhishekBelgaon" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="font-medium text-gray-700 hover:text-gray-900 transition-colors"
+          >
+            @AbhishekBelgaon
+          </Link>{' '}
         </p>
         <p>
           Sealnotes is open-source on{' '}
