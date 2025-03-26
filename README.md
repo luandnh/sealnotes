@@ -58,16 +58,10 @@ pnpm install
 cp .env.example .env
 ```
 
-- Spin up the docker file to start the HTTP Redis
-
-```
-docker compose up -d
-```
-
 - Run the project: 
 
 ```
-pnpm dev
+pnpm local
 ```
 
 ## License
