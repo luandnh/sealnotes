@@ -1,20 +1,23 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Navbar } from "@/components/navbar";
-import { useState } from "react";
-import Link from "next/link";
+import type React from "react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Navbar } from "@/components/navbar"
+import { useState } from "react"
+import Link from "next/link"
+import { Coffee } from "lucide-react"
 
 export default function Hero() {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("")
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (inputValue.trim()) {
-      window.location.href = `/${inputValue.trim()}`;
+      window.location.href = `/${inputValue.trim()}`
     }
-  };
+  }
 
   return (
     <main className="flex justify-center items-center mt-5">
@@ -22,14 +25,23 @@ export default function Hero() {
         <Navbar />
         <div className="flex justify-center items-center mt-20 md:mt-30 lg:mt-40 px-4 ">
           <div className="text-center">
-            <div className="flex justify-center items-center mb-6">
-                <Link href="https://github.com/harshsbhat/sealnotes" target="_blank">
-              <Button
-                variant="outline"
-                className="dark:bg-black bg-white text-black dark:text-white flex justify-center items-center rounded-full px-6 py-3 text-lg"
-              >
-                Star us on Github ⭐
-              </Button>
+            <div className="flex justify-center items-center gap-4 mb-6">
+              <Link href="https://github.com/harshsbhat/sealnotes" target="_blank">
+                <Button
+                  variant="outline"
+                  className="dark:bg-black bg-white text-black dark:text-white flex justify-center items-center rounded-full px-6 py-3 text-lg"
+                >
+                  Star us on Github ⭐
+                </Button>
+              </Link>
+              <Link href="https://www.buymeacoffee.com/sealnotes" target="_blank">
+                <Button
+                  variant="outline"
+                  className="dark:bg-black bg-white text-black dark:text-white flex justify-center items-center rounded-full px-6 py-3 text-lg"
+                >
+                  <Coffee className="mr-2 h-5 w-5" />
+                  Buy me a coffee
+                </Button>
               </Link>
             </div>
 
@@ -63,5 +75,5 @@ export default function Hero() {
         </div>
       </div>
     </main>
-  );
+  )
 }
