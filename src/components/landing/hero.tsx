@@ -34,7 +34,7 @@ export default function Hero() {
                   Star us on Github ⭐
                 </Button>
               </Link>
-              <Link href="https://www.buymeacoffee.com/sealnotes" target="_blank">
+              <Link href="https://www.buymeacoffee.com/harshbhat" target="_blank">
                 <Button
                   variant="outline"
                   className="dark:bg-black bg-white text-black dark:text-white flex justify-center items-center rounded-full px-6 py-3 text-lg"
