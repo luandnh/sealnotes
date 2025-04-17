@@ -34,15 +34,6 @@ export default function Hero() {
                   Star us on Github ⭐
                 </Button>
               </Link>
-              <Link href="https://www.buymeacoffee.com/harshbhat" target="_blank">
-                <Button
-                  variant="outline"
-                  className="dark:bg-black bg-white text-black dark:text-white flex justify-center items-center rounded-full px-6 py-3 text-lg"
-                >
-                  <Coffee className="mr-2 h-5 w-5" />
-                  Buy me a coffee
-                </Button>
-              </Link>
             </div>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto text-center mt-4 relative z-20 py-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
