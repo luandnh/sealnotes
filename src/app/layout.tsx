@@ -8,8 +8,8 @@ import { env } from "@/env";
 const defaultTitle = "SealNotes: Secure, Lightweight Encrypted Notepad for Privacy";
 const defaultDescription = "SealNotes: A free, open-source encrypted notepad for secure and private note-taking. Enjoy rich text editing and complete privacy—no login required.";
 
-const title = env.NEXT_PUBLIC_PUBLIC_TITLE || defaultTitle;
-const description = env.NEXT_PUBLIC_PUBLIC_DESCRIPTION || defaultDescription;
+const title = env.NEXT_PUBLIC_TITLE || defaultTitle;
+const description = env.NEXT_PUBLIC_DESCRIPTION || defaultDescription;
 
 export const metadata: Metadata = {
   title: title,
