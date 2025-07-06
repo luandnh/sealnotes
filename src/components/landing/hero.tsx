@@ -8,6 +8,10 @@ import { Navbar } from "@/components/navbar"
 import { useState } from "react"
 import Link from "next/link"
 import { Coffee } from "lucide-react"
+import { env } from "@/env"; 
+
+const defaultURL = "sealnotes.com"
+const pageURL = env.PUBLIC_URL || defaultURL
 
 export default function Hero() {
   const [inputValue, setInputValue] = useState("")
@@ -49,7 +53,7 @@ export default function Hero() {
               className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-3 mt-8"
             >
               <span className="text-lg sm:text-xl font-medium tracking-tight transition-colors bg-clip-text text-transparent bg-gradient-to-r from-zinc-800 to-zinc-700">
-                sealnotes.com/
+                {pageURL}/
               </span>
               <Input
                 type="text"
