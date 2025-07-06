@@ -12,9 +12,6 @@ export const env = createEnv({
       .default("development"),
     UPSTASH_REDIS_REST_URL: z.string(),
     UPSTASH_REDIS_REST_TOKEN: z.string(),
-    PUBLIC_URL: z.string(),
-    PUBLIC_TITLE: z.string(),
-    PUBLIC_DESCRIPTION: z.string(),
   },
 
   /**
