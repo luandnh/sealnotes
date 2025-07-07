@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:20-alpine AS builder
+FROM node:22-alpine3.20 AS builder
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN cp .env.example .env
 RUN pnpm next build
 
 # Stage 2: Prepare the production image
-FROM node:20-alpine AS runner
+FROM node:22-alpine3.20 AS runner
 
 WORKDIR /app
 

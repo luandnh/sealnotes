@@ -20,9 +20,9 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    NEXT_PUBLIC_URL: z.string().optional(),
-    NEXT_PUBLIC_TITLE: z.string().optional(),
-    NEXT_PUBLIC_DESCRIPTION: z.string().optional(),
+    NEXT_PUBLIC_URL: z.string(),
+    NEXT_PUBLIC_TITLE: z.string(),
+    NEXT_PUBLIC_DESCRIPTION: z.string(),
   },
 
   /**
