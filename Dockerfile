@@ -4,7 +4,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Install pnpm globally for the build process
-RUN npm install -g pnpm
+RUN npm install -g pnpm@latest
 
 # Copy only dependency files for faster build cache
 COPY package.json pnpm-lock.yaml ./
@@ -25,7 +25,7 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 # Install pnpm globally for runtime (if needed)
-RUN npm install -g pnpm
+RUN npm install -g pnpm@latest
 
 # Set environment variable for production
 ENV NODE_ENV=production
