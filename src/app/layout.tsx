@@ -5,6 +5,8 @@ import { type Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import { env } from "@/env"; 
 
+console.log("Environment Variables:", env);
+
 const defaultTitle = "SealNotes: Secure, Lightweight Encrypted Notepad for Privacy";
 const defaultDescription = "SealNotes: A free, open-source encrypted notepad for secure and private note-taking. Enjoy rich text editing and complete privacy—no login required.";
 
