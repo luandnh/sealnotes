@@ -11,7 +11,7 @@ import { Coffee } from "lucide-react"
 import { env } from "@/env"; 
 
 const defaultURL = "sealnotes.com"
-const pageURL = env.NEXT_PUBLIC_URL || defaultURL
+const pageURL = env.NEXT_PUBLIC_URL ?? defaultURL
 
 export default function Hero() {
   const [inputValue, setInputValue] = useState("")
