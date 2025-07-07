@@ -7,15 +7,9 @@ import { env } from "@/env";
 
 console.log("Environment Variables:", env);
 
-const defaultTitle = "SealNotes: Secure, Lightweight Encrypted Notepad for Privacy";
-const defaultDescription = "SealNotes: A free, open-source encrypted notepad for secure and private note-taking. Enjoy rich text editing and complete privacy—no login required.";
-
-const title = env.NEXT_PUBLIC_TITLE ?? defaultTitle;
-const description = env.NEXT_PUBLIC_DESCRIPTION ?? defaultDescription;
-
 export const metadata: Metadata = {
-  title: title,
-  description: description,
+  title: env.PAGE_TITLE,
+  description: env.PAGE_DESCRIPTION,
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   keywords: [
     "encrypted notepad",

@@ -12,6 +12,13 @@ export const env = createEnv({
       .default("development"),
     UPSTASH_REDIS_REST_URL: z.string(),
     UPSTASH_REDIS_REST_TOKEN: z.string(),
+    PAGE_TITLE: z.string().optional().default("SealNotes"),
+    PAGE_DESCRIPTION: z
+      .string()
+      .optional()
+      .default(
+        "SealNotes: A free, open-source encrypted notepad for secure and private note-taking. Enjoy rich text editing and complete privacy—no login required.",
+      ),
   },
 
   /**
@@ -20,9 +27,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    NEXT_PUBLIC_URL: z.string(),
-    NEXT_PUBLIC_TITLE: z.string(),
-    NEXT_PUBLIC_DESCRIPTION: z.string(),
+    NEXT_PUBLIC_URL: z.string().optional().default("sealnotes.com"),
   },
 
   /**
@@ -34,8 +39,6 @@ export const env = createEnv({
     UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
     UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
     NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
-    NEXT_PUBLIC_TITLE: process.env.NEXT_PUBLIC_TITLE,
-    NEXT_PUBLIC_DESCRIPTION: process.env.NEXT_PUBLIC_DESCRIPTION,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
