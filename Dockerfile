@@ -39,9 +39,6 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
-# Restrict .env file permissions for security
-RUN chmod 600 .env
-
 # Change ownership of all files to the non-root user
 RUN chown -R appuser:appgroup /app
 
