@@ -38,6 +38,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
     UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
+    PAGE_TITLE: process.env.PAGE_TITLE,
+    PAGE_DESCRIPTION: process.env.PAGE_DESCRIPTION,
     NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
