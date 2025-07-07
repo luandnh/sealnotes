@@ -24,6 +24,9 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
+# Install pnpm globally for runtime (if needed)
+RUN npm install -g pnpm
+
 # Set environment variable for production
 ENV NODE_ENV=production
 
